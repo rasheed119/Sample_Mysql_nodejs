@@ -5,7 +5,7 @@ import cors from "cors";
 import bcrypt from "bcrypt";
 
 const app = express();
-const PORT = process.env.PORt || 8000;
+const PORT = process.env.PORT || 8000;
 app.use(express.json());
 app.use(cors());
 
@@ -17,6 +17,7 @@ const db = mysql
     user: process.env.USER,
     password: process.env.PASS,
     database: process.env.DATABASE,
+    port:process.env.DBPORT
   })
   .promise();
 
@@ -44,7 +45,6 @@ app.get("/allusers", async (req, res) => {
     const [query] = await db.query(
       "SELECT id,First_Name,Last_Name,email FROM users"
     );
-    res.setHeader("set-cookie",["setfromserver=2"]);
     res.status(200).json({ users: query });
   } catch (error) {
     console.log(error.message);
