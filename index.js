@@ -47,9 +47,9 @@ app.get("/createtable", async (req, res) => {
 app.get("/allusers", async (req, res) => {
   try {
     const [query] = await db.query(
-      "SELECT id,First_Name,Last_Name,email FROM users"
+      "SELECT id,First_Name,Last_Name,email FROM USERS"
     );
-    res.status(200).json({ users: query });
+    res.status(200).json({ USERS: query });
   } catch (error) {
     console.log(error.message);
   }
@@ -75,7 +75,7 @@ app.post("/adduser", async (req, res) => {
 app.delete("/deleteuser/:id",async(req,res)=>{
   try {
     const {id} = req.body;
-    const [query] =  await db.query("DELETE FROM users WHERE id=?",[id]);
+    const [query] =  await db.query("DELETE FROM USERS WHERE id=?",[id]);
     res.status(200).json({ message : "User deleted Successfully",query })
   } catch (error) {
     console.log(error.message);
