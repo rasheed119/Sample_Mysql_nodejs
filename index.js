@@ -75,7 +75,7 @@ app.post("/adduser", async (req, res) => {
 app.delete("/deleteuser/:id",async(req,res)=>{
   try {
     const {id} = req.body;
-    const [query] =  await db.query("DELETE FROM USERS WHERE id=?",[id]);
+    const [query] =  await db.query("DELETE FROM USERS WHERE USERS.id=?",[id]);
     res.status(200).json({ message : "User deleted Successfully",query })
   } catch (error) {
     console.log(error.message);
