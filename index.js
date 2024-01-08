@@ -63,6 +63,7 @@ app.post("/adduser", async (req, res) => {
     res.setHeader("set-cookie",["setfromserver=2"]);
     res.status(200).json({ query, message: "User Added" });
   } catch (error) {
+    res.status(400).json({ Error : error.message });
     console.log(error.message);
   }
 });
