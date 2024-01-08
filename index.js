@@ -21,9 +21,13 @@ const db = mysql
   })
   .promise();
 
-db.connect()
-  .then(() => console.log("Connected to Database"))
-  .catch((err) => console.log("Error Connected to Database", err.message));
+db.connect(function (err){
+  if(err){
+    console.log("Error Connecting to DB",err.message)
+  }else{
+    console.log("Connected to db");
+  }
+})
 
 app.get("/", (req, res) => {
   res.status(200).json({ Title: "Sample Task" });
